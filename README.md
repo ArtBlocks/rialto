@@ -3,7 +3,7 @@
 An open source NFT marketplace built on Reservoir.
 
 <!-- ABOUT THE PROJECT -->
-## About The Project 
+## About The Project
 
 
 Reservoir Market is an open source marketplace that enables communities to easily launch their own NFT marketplace, accessing instant liquidity aggregated from other major marketplaces.
