@@ -10,5 +10,8 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        git checkout -b hotfix $(git describe --tags $(git rev-list --tags --max-count=1)) && git cherry-pick $(GITHUB_SHA) && git add . && git commit --m 'hotfix'
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: create hotfix
+        run: |
+          git checkout -b hotfix $(git describe --tags $(git rev-list --tags --max-count=1)) && git cherry-pick $(GITHUB_SHA) && git add . && git commit --m 'hotfix'
