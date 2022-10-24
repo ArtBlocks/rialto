@@ -3,7 +3,7 @@ on:
     types:
       - closed
     branches: 
-      - hotfix-*
+      - 'hotfix-**'
 
 jobs:
   if_merged:
