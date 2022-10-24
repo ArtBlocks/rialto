@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Config 
+        run: |
+          git config --global user.email "eng@artblocks.io" 
       - name: create hotfix
         run: |
           git checkout -b hotfix $(git describe --tags $(git rev-list --tags --max-count=1)) && git cherry-pick ${{ github.sha }} && git add . && git commit --m 'hotfix'
