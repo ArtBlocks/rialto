@@ -15,6 +15,12 @@ jobs:
       - name: Config 
         run: |
           git config --global user.email "eng@artblocks.io" && git config --global user.name "artblocks eng"
-      - name: create hotfix
+      - name: get tags
+        run: | 
+          git fetch --tags
+      - name: create hotfix branch from latest tag
         run: |
-          git checkout -b hotfix $(git describe --tags $(git rev-list --tags --max-count=1)) && git cherry-pick ${{ github.sha }} && git push origin hotfix
+          git checkout -b hotfix $(git describe --tags $(git rev-list --tags --max-count=1))
+      - name: cherry pick branch and push
+        run: |
+          git cherry-pick ${{ github.sha }} && git push origin hotfix
