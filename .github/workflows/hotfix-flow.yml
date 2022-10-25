@@ -23,4 +23,4 @@ jobs:
           git checkout -b hotfix $(git describe --tags $(git rev-list --tags --max-count=1))
       - name: cherry pick branch and push
         run: |
-          git cherry-pick ${{ github.sha }} --strategy-option=theirs && git push origin hotfix
+          git cherry-pick ${{ github.sha }} --strategy-option=theirs && git rebase --onto $(git describe --tags $(git rev-list --tags --max-count=1)) main && git push origin hotfix
