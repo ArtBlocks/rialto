@@ -2,7 +2,7 @@ name: deploy hotfix
 on:
   push:
     tags:
-      - 'hotfix'
+      - '**-hotfix'
 
 jobs:
   build:
