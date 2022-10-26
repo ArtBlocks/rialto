@@ -1,8 +1,8 @@
+name: deploy hotfix
 on:
   push:
-    # Pattern matched against refs/tags
-    tags:        
-      - '[*-hotfix]'
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+-hotfix'
 
 jobs:
   build:
