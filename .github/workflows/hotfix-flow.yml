@@ -16,6 +16,7 @@ jobs:
         run: |
           git config --global user.email "eng@artblocks.io" && git config --global user.name "artblocks eng"
       - name: delete current hotfix branch
+        continue-on-error: true
         run: |
           git push origin -d hotfix && git branch -D hotfix
       - name: get tags
