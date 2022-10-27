@@ -12,9 +12,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Config 
+      - name: config 
         run: |
           git config --global user.email "eng@artblocks.io" && git config --global user.name "artblocks eng"
+      - name: delete current hotfix branch
+        run: |
+          git push origin -d hotfix && git branch -D hotfix
       - name: get tags
         run: | 
           git fetch --tags
