@@ -145,5 +145,3 @@ Discord: [Reservoir Protocol](https://discord.gg/j5K9fESNwh)
 Project Link: [Reservoir Protocol](https://reservoirprotocol.github.io/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-//
