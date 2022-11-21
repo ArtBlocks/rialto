@@ -1,33 +1,33 @@
+name: create hotfix branch from latest tag
 on:
   pull_request:
-    types:
-      - closed
     labeled: 
       - hotfix
 
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: config 
-        run: |
-          git config --global user.email "eng@artblocks.io" && git config --global user.name "artblocks eng"
-      - name: delete current hotfix branch
-        continue-on-error: true
-        run: |
-          git push origin -d hotfix && git branch -D hotfix
-      - name: get tags
-        run: | 
-          git fetch --tags
-      - name: create hotfix branch
-        run: |
-          git checkout -b hotfix $(git describe --tags $(git rev-list --tags --max-count=1))
-      - name: cherry pick branch and push
-        run: |
-          git cherry-pick ${{ github.event.pull_request.head.sha }} --strategy-option=theirs
-      - name: push
-        run: |
-          git push origin hotfix
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: config 
+      run: |
+        git config --global user.email "eng@artblocks.io" && git config --global user.name "artblocks eng"
+    - name: delete current hotfix branch
+      continue-on-error: true
+      run: |
+        git push origin -d hotfix && git branch -D hotfix
+    - name: get tags
+      run: | 
+        git fetch --tags
+    - name: restore branch
+      run: |
+        git checkout -b ${{ github.event.pull_request.head.ref }} ${{ github.event.}}
+    - name: create hotfix branch
+      run: |
+        git checkout -b hotfix $(git describe --tags $(git rev-list --tags --max-count=1))
+    - name: cherry pick branch and push
+      run: |
+        git cherry-pick $(git merge-base main ${{ github.event.pull_request.head.ref }})..${{ github.event.pull_request.head.ref }} --strategy-option=theirs
+    - name: push
+      run: |
+        git push origin hotfix
